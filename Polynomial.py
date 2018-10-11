@@ -13,23 +13,32 @@ def model(x,w):
     return tf.add_n(tmps)
 
 
-learning_rate=0.01
-training_epoch=50
+learning_rate=0.005
+training_epoch=1000
 parm_num=6
 w_val=0
 
 
-train_X=np.linspace(0,100,1001)
+train_X=np.linspace(-1,1,101)
 train_Y=np.power(train_X,2)*3
+
+'''
+train_Y_coeffs = [1,2,3,4,5,6]
+train_Y = 0
+for i in range(parm_num):
+    train_Y += train_Y_coeffs[i] * np.power(train_X,i)
+'''
+
+print(train_X,train_Y)
 
 X=tf.placeholder(tf.float32)
 Y=tf.placeholder(tf.float32)
-w=tf.Variable([0.]*parm_num)
+w=tf.Variable([10.]*parm_num)
 
 y=model(X,w)
 cost=(tf.pow(Y-y,2))
 
-train_op=tf.train.GradientDescentOptimizer(learning_rate).minimize(tf.clip_by_value(cost,1e-8,1.0))
+train_op=tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 init_op=tf.global_variables_initializer()
 

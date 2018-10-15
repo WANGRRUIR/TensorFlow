@@ -14,20 +14,18 @@ def model(x,w):
 
 
 learning_rate=0.005
-training_epoch=1000
+training_epoch=10000
 parm_num=6
 w_val=0
 
 
 train_X=np.linspace(-1,1,101)
-train_Y=np.power(train_X,2)*3
+#train_Y=np.power(train_X,2)*3
 
-'''
-train_Y_coeffs = [1,2,3,4,5,6]
+train_Y_coeffs = [3,2,3,1,5,6]
 train_Y = 0
 for i in range(parm_num):
     train_Y += train_Y_coeffs[i] * np.power(train_X,i)
-'''
 
 print(train_X,train_Y)
 
